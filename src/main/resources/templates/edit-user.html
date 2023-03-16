@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration and Login App</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{'/user/home?id='+${currentUserId}}">Home</a>
+            <a class="navbar-brand" href="#" th:href="@{'/user/viewProfile?id=' + ${user.id}}">Profile</a>
+            <a class="navbar-brand" href="#" th:href="@{/recipe/viewCookBook}">Cookbook</a>
+            <a class="navbar-brand" href="#" th:href="@{/events/eventPlans}">Events</a>
+            <a class="navbar-brand" href="#" th:href="@{/shopping/shoppingList}">Shopping List</a>
+            <a class="navbar-brand" href="#" th:href="@{/user/logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+
+
+<div class="container my-5">
+    <h3> Edit Profile</h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+                <form action="#" th:action="@{/user/editProfile}" th:object="${user}"
+                      method="post">
+                    
+					<!-- recipeUpdated message -->
+					<div th:if="${userUpdated}">
+						<div class="alert alert-info">Profile Update successful!</div>
+					</div>
+					
+					
+					<!-- error message -->
+					<div th:if="${error}">
+						<div class="alert alert-danger"><span th:text="${errorMessage}"></span>
+						</div>
+					</div>
+
+	
+					<div class="form-group">
+						<span><a th:href="@{/recipe/viewCookBook}">Cook Book</a></span>
+					</div>
+						
+						
+                    <div class="row">
+                    
+                        <div class="form-group col-md-8">
+                            <label for="firstName" class="col-form-label">First Name</label>
+                            <input type="text" th:field="*{firstName}" class="form-control"
+                                   id="firstName" placeholder="First Name" />
+                        </div>
+                        <div class="form-group col-md-8">
+                            <label for="lastName" class="col-form-label">Last Name</label>
+                            <input type="text" th:field="*{lastName}" class="form-control"
+                                   id="lastName" placeholder="Last Name" />
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="email" class="col-form-label">Email</label>
+                            <textarea rows="3" cols="50" th:field="*{email}" class="form-control"
+                                   id="email" placeholder="Email" ></textarea>
+                        </div>
+
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value=" Submit ">
+                        </div>
+
+                        <input type="hidden" id="id" th:field="*{id}">
+
+                    </div>
+                </form>
+            
+            </div>
+        </div>
+    </div>
+</div>
+		
+    </div>
+</div>
+</body>
+</html>

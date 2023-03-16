@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Shopping List</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+
+
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{'/user/home?id='+${currentUserId}}">Home</a>
+            <a class="navbar-brand" href="#" th:href="@{'/user/viewProfile?id=' + ${user.id}}">Profile</a>
+            <a class="navbar-brand" href="#" th:href="@{/recipe/viewCookBook}">Cookbook</a>
+            <a class="navbar-brand" href="#" th:href="@{/events/eventPlans}">Events</a>
+            <a class="navbar-brand" href="#" th:href="@{/shopping/shoppingList}">Shopping List</a>
+            <a class="navbar-brand" href="#" th:href="@{/user/logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <h1>Shopping List</h1>
+            <div th:switch="${recipes}" class="container my-5">
+                <p class="my-5">
+                <form action="/recipe/search" method="post">
+                    <input type="text"  name="searchStr" placeholder="type for search" onkeyup="submit()" th:value="${searchStr}">
+
+                </form>
+                </p>
+                <div class="col-md-10">
+                    <h2 th:case="null">No record found !!</h2>
+
+                    <div th:case="*">
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th>Ingredients</th>
+                                <th>Recipe</th>
+                                <th>Remove From Shopping List</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="recipe : ${recipes}">
+                                <td th:text="${recipe.ingredients}"></td>
+                                <td th:text="${recipe.name}"></td>
+                                <td>
+                                    <span>
+							            <a th:href="@{/recipe/removeFromShoppingList/{id}(id=${recipe.id})}"class="btn btn-primary">Remove From Shopping List</a>
+                                    </span>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

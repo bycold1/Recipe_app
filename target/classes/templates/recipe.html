@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration and Login App</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{'/user/home?id='+${currentUserId}}">Home</a>
+            <a class="navbar-brand" href="#" th:href="@{'/user/viewProfile?id=' + ${user.id}}">Profile</a>
+            <a class="navbar-brand" href="#" th:href="@{/recipe/viewCookBook}">Cookbook</a>
+            <a class="navbar-brand" href="#" th:href="@{/events/eventPlans}">Events</a>
+            <a class="navbar-brand" href="#" th:href="@{/shopping/shoppingList}">Shopping List</a>
+            <a class="navbar-brand" href="#" th:href="@{/user/logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+
+
+<div class="container my-5">
+    <h3> Recipe Details </h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+					
+					<!-- error message -->
+					<div th:if="${error}">
+						<div class="alert alert-danger"><span th:text="${errorMessage}">
+						</div>
+					</div>
+
+	
+					<div class="form-group">
+							<span><a th:href="@{/recipe/viewCookBook}">Cook Book</a></span>
+					</div>
+						
+						
+                    <div class="row">
+                        <div class="form-group col-md-8">
+                            <label for="inShoppingListDisplay" class="col-form-label">In Shopping List</label>
+                            <span id="inShoppingListDisplay" th:text="${recipe.isInShoppingListDisplay}"></span>
+                        </div>
+                    
+                        <div class="form-group col-md-8">
+                            <label for="recipeName" class="col-form-label">Recipe Name</label>
+							<span id="recipeName" th:text="${recipe.name}"></span>
+                        </div>
+                        
+                        
+                        <div class="form-group col-md-8">
+                            <label for="type" class="col-form-label">Recipe Type</label>
+                            <span id="type" th:text="${recipe.type}"></span>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="ingredients" class="col-form-label">Ingredients</label>
+                            <div id="ingredients" th:text="${recipe.ingredients}"></div>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="description" class="col-form-label">Description</label>
+                            <div id="description" th:text="${recipe.descriptionDisplay}"></div>
+                        </div>
+
+                        <div class="form-group col-md-8">
+                            <label for="calories" class="col-form-label">Calories</label>
+                            <span id="calories" th:text="${recipe.calories}"></span>
+                        </div>
+                        
+                        <div class="form-group col-md-8">
+                            <label for="cookingTime" class="col-form-label">Cooking Time</label>
+                            <span id="cookingTime" th:text="${recipe.cookingTime}"></span>
+                        </div>
+
+
+                    </div>
+				
+            </div>
+        </div>
+    </div>
+</div>
+		
+    </div>
+</div>
+</body>
+</html>

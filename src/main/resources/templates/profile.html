@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Registration and Login App</title>
+
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<!-- create navigation bar ( header) -->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" th:href="@{'/user/home?id='+${currentUserId}}">Home</a>
+            <a class="navbar-brand" href="#" th:href="@{'/user/viewProfile?id=' + ${user.id}}">Profile</a>
+            <a class="navbar-brand" href="#" th:href="@{/recipe/viewCookBook}">Cookbook</a>
+            <a class="navbar-brand" href="#" th:href="@{/events/eventPlans}">Events</a>
+            <a class="navbar-brand" href="#" th:href="@{/shopping/shoppingList}">Shopping List</a>
+            <a class="navbar-brand" href="#" th:href="@{/user/logout}">Logout</a>
+        </div>
+    </div>
+</nav>
+
+<br>
+<br>
+<div class = "container">
+    <div class = "row">
+
+
+<div class="container my-5">
+    <h3> My Profile </h3>
+    <div class="card">
+        <div class="card-body">
+            <div class="col-md-10">
+					
+					<!-- error message -->
+					<div th:if="${error}">
+						<div class="alert alert-danger"><span th:text="${errorMessage}"></span>
+                        </div>
+					</div>
+
+						
+                    <div class="row">
+                    
+                    
+                        <div class="form-group col-md-8">
+                            <label for="firstName" class="col-form-label">First Name</label>
+							<span id="firstName" th:text="${user.firstName}"></span>
+                        </div>
+				
+				
+                        <div class="form-group col-md-8">
+                            <label for="lastName" class="col-form-label">Last Name</label>
+							<span id="lastName" th:text="${user.lastName}"></span>
+                        </div>
+                        
+                        
+                        <div class="form-group col-md-8">
+                            <label for="email" class="col-form-label">Email</label>
+							<span id="email" th:text="${user.email}"></span>
+                        </div>
+
+                    </div>
+				
+				   <div class="form-group col-md-8">
+                       <span><a th:href="@{/recipe/viewCookBook}">Cook Book</a></span>
+                   </div>
+				
+				   <div class="form-group col-md-8">
+                       <span><a th:href="@{/recipe/viewRecipes?publicOrPrivate=all}">View My Recipes</a></span>
+                   </div>
+
+                    <div class="form-group col-md-8">
+                        <span><a th:href="@{/recipe/favouriteRecipe}">View My Favourite Recipes</a></span>
+                    </div>
+
+                    <div class="form-group col-md-8">
+                        <span><a th:href="@{/shopping/shoppingList}">Shopping List</a></span>
+                    </div>
+
+                    <div class="form-group col-md-8">
+                        <span><a th:href="@{/events/eventPlans}">Event Plans</a></span>
+                    </div>
+
+                    <div class="form-group col-md-8">
+                        <span><a th:href="@{/user/edit/{id}(id=${user.id})}">Edit Profile</a></span>
+                    </div>
+
+                    <div class="form-group col-md-8">
+                        <span><a th:href="@{/user/reset/{id}(id=${user.id})}">Reset Password</a></span>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    </div>
+</div>
+</body>
+</html>
