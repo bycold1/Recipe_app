@@ -27,5 +27,4 @@ Run the following command to start the application::
 java -jar target/myproject.jar
 ```
 
-# Basic workflow
-ATTENTION: right now login is already implemented, here is the credentials that you need to use to login.
+
